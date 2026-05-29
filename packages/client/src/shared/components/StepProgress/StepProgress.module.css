@@ -1,0 +1,88 @@
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.step {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+/* Icon column - fixed width keeps labels aligned */
+.iconCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 20px;
+}
+
+.iconWrapper {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.connector {
+  width: 2px;
+  flex: 1;
+  min-height: 20px;
+  background-color: var(--color-border);
+  margin: 4px 0;
+  border-radius: 1px;
+  transition: background-color var(--transition-slow);
+}
+
+.connectorComplete {
+  background-color: var(--color-success);
+}
+
+/* Pending dot icon */
+.iconPending {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border-strong);
+  display: block;
+}
+
+/* SVG icons */
+.iconComplete,
+.iconError {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Content column */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: var(--space-4);
+  min-height: 44px;
+}
+
+.label {
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  line-height: 20px; /* match icon height */
+  transition: color var(--transition-base);
+}
+
+.detail {
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+}
+
+/* Step status colors */
+.pending .label  { color: var(--color-text-tertiary); }
+.processing .label { color: var(--color-text-primary); }
+.complete .label { color: var(--color-text-primary); }
+.error .label    { color: var(--color-error); }

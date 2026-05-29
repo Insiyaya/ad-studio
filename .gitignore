@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment — NEVER commit secrets
+.env
+.env.local
+.env.*.local
+
+# Storage (generated assets — use object storage in prod)
+packages/server/storage/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+
+# Puppeteer cache
+.cache/puppeteer/
+
+# Coverage
+coverage/
+
+# Terraform state — contains sensitive data
+infrastructure/oracle/*.tfstate
+infrastructure/oracle/*.tfstate.backup
+infrastructure/oracle/.terraform/

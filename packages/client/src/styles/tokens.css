@@ -1,0 +1,228 @@
+/*
+ * Ad Studio - Design Tokens
+ *
+ * WHY CSS custom properties and not Tailwind config:
+ * CSS custom properties cascade and can be overridden per-component,
+ * are readable in DevTools, and don't require a build step to inspect.
+ * They also work directly inside CSS Modules without any plugin.
+ *
+ * Rule: every color, size, shadow, and timing value used in this app
+ * must come from a token defined here. No magic numbers in component CSS.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ── Color - Background ──────────────────────────────────────────────── */
+  --color-bg:               #0A0A0A;  /* Page background - pure near-black */
+  --color-surface:          #161616;  /* Cards, panels - one level above bg */
+  --color-surface-elevated: #1C1C1C;  /* Modals, dropdowns - floats above surface */
+  --color-surface-hover:    #242424;  /* Hover state for interactive surfaces */
+
+  /* ── Color - Border ──────────────────────────────────────────────────── */
+  --color-border:           #242424;
+  --color-border-subtle:    #1A1A1A;
+  --color-border-strong:    #333333;
+
+  /* ── Color - Brand ───────────────────────────────────────────────────── */
+  /* Primary: red - used SPARINGLY on primary CTAs and active states */
+  --color-primary:          #FF2D3C;
+  --color-primary-hover:    #E11D2A;
+  --color-primary-subtle:   rgba(255, 45, 60, 0.12);
+
+  /* Secondary: deep crimson - AI-generated content indicators, logo gradient end */
+  --color-secondary:        #8B0E18;
+  --color-secondary-hover:  #6D0B12;
+  --color-secondary-subtle: rgba(139, 14, 24, 0.15);
+
+  /* ── Color - Semantic ────────────────────────────────────────────────── */
+  --color-success:          #10B981;
+  --color-success-subtle:   rgba(16, 185, 129, 0.12);
+  --color-warning:          #F59E0B;
+  --color-warning-subtle:   rgba(245, 158, 11, 0.12);
+  --color-error:            #EF4444;
+  --color-error-subtle:     rgba(239, 68, 68, 0.12);
+  --color-info:             #38BDF8;
+  --color-info-subtle:      rgba(56, 189, 248, 0.12);
+
+  /* ── Color - Text ────────────────────────────────────────────────────── */
+  --color-text-primary:     #F5F5F5;
+  --color-text-secondary:   #A3A3A3;
+  --color-text-tertiary:    #6B6B6B;
+  --color-text-disabled:    #333333;
+  --color-text-inverse:     #0A0A0A;
+
+  /* ── Color - Timeline Editor (specific to ad editor feature) ─────────── */
+  --color-track-images:     #3B82F6;
+  --color-track-text:       #8B5CF6;
+  --color-track-voiceover:  #10B981;
+  --color-track-music:      #F59E0B;
+  --color-track-overlay:    #F43F5E;
+
+  /* ── Typography - Font Families ──────────────────────────────────────── */
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* ── Typography - Font Sizes ─────────────────────────────────────────── */
+  --text-xs:   0.75rem;    /*  12px */
+  --text-sm:   0.875rem;   /*  14px */
+  --text-base: 1rem;       /*  16px */
+  --text-md:   1.125rem;   /*  18px */
+  --text-lg:   1.25rem;    /*  20px */
+  --text-xl:   1.5rem;     /*  24px */
+  --text-2xl:  1.875rem;   /*  30px */
+  --text-3xl:  2.25rem;    /*  36px */
+  --text-4xl:  3rem;       /*  48px */
+
+  /* ── Typography - Font Weights ───────────────────────────────────────── */
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+
+  /* ── Typography - Line Heights ───────────────────────────────────────── */
+  --leading-tight:  1.25;
+  --leading-snug:   1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  /* ── Spacing - 4px base scale ────────────────────────────────────────── */
+  --space-1:  0.25rem;  /*  4px */
+  --space-2:  0.5rem;   /*  8px */
+  --space-3:  0.75rem;  /* 12px */
+  --space-4:  1rem;     /* 16px */
+  --space-6:  1.5rem;   /* 24px */
+  --space-8:  2rem;     /* 32px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-24: 6rem;     /* 96px */
+
+  /* ── Border Radius ───────────────────────────────────────────────────── */
+  --radius-sm:  6px;   /* Small interactive: buttons, inputs, badges */
+  --radius-md:  12px;  /* Cards, panels, dropdowns */
+  --radius-lg:  16px;  /* Large containers, modals */
+  --radius-full: 9999px; /* Pills only - use deliberately, not as default */
+
+  /* ── Shadows - layered and directional ───────────────────────────────── */
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-3: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow-primary:   0 0 20px rgba(255, 45, 60, 0.25);
+  --shadow-glow-secondary: 0 0 20px rgba(139, 14, 24, 0.25);
+
+  /* ── Z-index scale ───────────────────────────────────────────────────── */
+  --z-base:     0;
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-toast:    500;
+
+  /* ── Transitions ─────────────────────────────────────────────────────── */
+  --transition-fast:   100ms ease;
+  --transition-base:   200ms ease;
+  --transition-slow:   350ms ease;
+  --transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Layout ──────────────────────────────────────────────────────────── */
+  --sidebar-width:         280px;
+  --properties-panel-width: 320px;
+  --timeline-height:       200px;
+  --header-height:         60px;
+  --max-content-width:     1440px;
+}
+
+/* ── Global Reset & Base Styles ──────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+  border: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+}
+
+img, video, canvas {
+  display: block;
+  max-width: 100%;
+}
+
+/* Scrollbar styling - subtle, on-brand */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+/* Focus visible - accessibility without the ugly default ring everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Remove focus ring for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}

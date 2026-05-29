@@ -1,0 +1,59 @@
+version: '3.9'
+
+# Local development orchestration.
+# Production uses Oracle Cloud Container Instances — see infrastructure/oracle/
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: ./packages/server
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - '3001:3001'
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      CLIENT_ORIGIN: http://localhost:5173
+      STORAGE_PROVIDER: local
+      LOCAL_STORAGE_PATH: /app/storage
+    volumes:
+      - ./packages/server/src:/app/src
+      - server_storage:/app/storage
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./packages/client
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - '5173:5173'
+    environment:
+      VITE_API_URL: http://localhost:3001
+    volumes:
+      - ./packages/client/src:/app/src
+    depends_on:
+      - server
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  server_storage:
