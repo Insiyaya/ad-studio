@@ -167,7 +167,7 @@ export async function crawlUrl(
     let resolvedSrc = src;
     try { resolvedSrc = new URL(src, url).href; } catch { return; }
 
-    const parents = $(el).parents().toArray().map(p => (p as cheerio.Element & { tagName?: string }).tagName?.toLowerCase() ?? '');
+    const parents = $(el).parents().toArray().map(p => ((p as unknown as { tagName?: string }).tagName ?? '').toLowerCase());
     const isChrome = parents.some(t => ['header', 'nav', 'footer'].includes(t));
     const isContent = parents.some(t => ['main', 'article', 'section'].includes(t));
 
